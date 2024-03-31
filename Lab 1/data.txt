@@ -1,0 +1,34 @@
+
+      <h1>The Operatoin: Multiplication</h1>
+      <h3>The Result: 150</h3>
+    
+      <h1>The Operatoin: Division</h1>
+      <h3>The Result: 0.3</h3>
+    
+      <h1>The Operatoin: Division</h1>
+      <h3>The Result: 0.3</h3>
+    
+      <h1>The Operatoin: Division</h1>
+      <h3>The Result: 0.3</h3>
+    
+      <h1>The Operatoin: Division</h1>
+      <h3>The Result: 0.03</h3>
+    
+      <h1>The Operatoin: Addition</h1>
+      <h3>The Result: 20</h3>
+    
+      <h1>The Operatoin: Addition</h1>
+      <h3>The Result: 20</h3>
+    
+      <h1>The Operatoin: Addition</h1>
+      <h3>The Result: 20</h3>
+    
+      <h1>The Operatoin: Multiplication</h1>
+      <h3>The Result: 300</h3>
+    
+      <h1>The Operatoin: Division</h1>
+      <h3>The Result: 0.03</h3>
+    
+      <h1>The Operatoin: Substration</h1>
+      <h3>The Result: -14</h3>
+    
