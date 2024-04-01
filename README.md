@@ -28,6 +28,7 @@ how to link a secion in github readme file
 
   - cd into the directory you want and
    ```
+    npm install
     node <file_name>
    ```
 
