@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat App</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="/socket.io/socket.io.js"></script>
+</head>
+
+<body class="flex flex-col items-center justify-center w-screen min-h-screen bg-gray-100 text-gray-800 p-10">
+
+    <!-- Component Start -->
+    <div class="flex flex-col flex-grow w-full max-w-xl bg-white shadow-xl rounded-lg overflow-hidden">
+        <div class="flex flex-col flex-grow h-0 p-4 overflow-auto" id="msgs">
+            <!-- <div class="flex w-full mt-2 space-x-3 max-w-xs">
+                <div class="flex-shrink-0 h-10 w-10 rounded-full bg-gray-300"></div>
+                <div>
+                    <div class="bg-gray-300 p-3 rounded-r-lg rounded-bl-lg">
+                        <p class="text-sm">First Msg. </p>
+                    </div>
+                    <span class="text-xs text-gray-500 leading-none">message time</span>
+                </div>
+            </div> -->
+            <!-- <div class="flex w-full mt-2 space-x-3 max-w-xs ml-auto justify-end">
+                <div>
+                    <div class="bg-blue-600 text-white p-3 rounded-l-lg rounded-br-lg">
+                        <p class="text-sm">Second Msg.</p>
+                    </div>
+                    <span class="text-xs text-gray-500 leading-none">message time</span>
+                </div>
+                <div class="flex-shrink-0 h-10 w-10 rounded-full bg-gray-300"></div>
+            </div> -->
+        </div>
+
+        <div class="bg-gray-300 p-4">
+            <form action="" id="form" class="flex">
+                <input class="flex items-center h-10 w-full rounded px-3 text-sm" type="text"
+                    placeholder="Type your message…" id="input">
+                <input type="submit" class="bg-indigo-500 text-white px-4 py-2 rounded-md ml-2" value="Send">
+            </form>
+        </div>
+    </div>
+    <!-- Component End  -->
+    <script>
+        let counter = 0;
+        const socket = io();
+        const form = document.getElementById('form');
+        const input = document.getElementById('input');
+        const messages = document.getElementById('msgs');
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            if (input.value) {
+                socket.emit('chat message', input.value);
+                input.value = '';
+            }
+        });
+
+        socket.on('chat message', (msg) => {
+            // const item = document.createElement('li');
+            // item.textContent = msg;
+            // messages.appendChild(item);
+            counter++;
+            let primaryMsg = `
+            <div class="flex w-full mt-2 space-x-3 max-w-xs">
+                <div class="flex-shrink-0 h-10 w-10 rounded-full bg-gray-300"></div>
+                <div>
+                    <div class="bg-gray-300 p-3 rounded-r-lg rounded-bl-lg">
+                        <p class="text-sm">${msg} </p>
+                    </div>
+                </div>
+            </div>
+            `;
+
+            let secondaryMsg = `
+            <div class="flex w-full mt-2 space-x-3 max-w-xs ml-auto justify-end">
+                <div>
+                    <div class="bg-blue-600 text-white p-3 rounded-l-lg rounded-br-lg">
+                        <p class="text-sm">${msg}</p>
+                    </div>
+                </div>
+                <div class="flex-shrink-0 h-10 w-10 rounded-full bg-gray-300"></div>
+            </div>
+            `;
+
+            messages.insertAdjacentHTML('beforeend', counter % 2 ? secondaryMsg : primaryMsg)
+            window.scrollTo(0, document.body.scrollHeight);
+
+        });
+    </script>
+</body>
+
+</html>
